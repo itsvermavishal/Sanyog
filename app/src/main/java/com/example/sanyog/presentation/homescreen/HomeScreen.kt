@@ -1,5 +1,6 @@
 package com.example.sanyog.presentation.homescreen
 
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -8,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -25,11 +27,49 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.sanyog.R
+import com.example.sanyog.presentation.bottomnavigation.BottomNavigation
+import com.example.sanyog.presentation.chat_box.ChatListBox
+import com.example.sanyog.presentation.chat_box.ChatListModel
 
 @Composable
 @Preview(showSystemUi = true)
 fun HomeScreen() {
 
+    val chatData = listOf(
+        ChatListModel(
+            image = R.drawable.salman_khan,
+            name = "Salman Khan",
+            time = "10:00AM",
+            message = "Hi, how are you?"
+        ),
+
+        ChatListModel(
+            image = R.drawable.rashmika,
+            name = "Rashmika Mandana",
+            time = "9:00AM",
+            message = "Hi"
+        ),
+
+        ChatListModel(
+            image = R.drawable.sharadha_kapoor,
+            name = "Sharadha Kapoor",
+            time = "12:00PM",
+            message = "how are you?"
+        ),
+
+        ChatListModel(
+            image = R.drawable.tripti_dimri,
+            name = "Tripti Dimiri",
+            time = "2:00PM",
+            message = "Hello"
+        ),
+        ChatListModel(
+            image = R.drawable.girl2,
+            name = "Aaliya",
+            time = "7:00AM",
+            message = "Nice"
+        ),
+    )
 
     Scaffold(
         floatingActionButton = {
@@ -45,6 +85,10 @@ fun HomeScreen() {
                     modifier = Modifier.size(28.dp),
                 )
             }
+        },
+
+        bottomBar = {
+            BottomNavigation()
         }
     ) {
         Column(modifier = Modifier.padding(it)) {
@@ -92,6 +136,14 @@ fun HomeScreen() {
             }
 
             HorizontalDivider()
+
+            LazyColumn {
+
+                items(chatData){it ->
+
+                    ChatListBox(chatListModel = it)
+                }
+            }
         }
     }
 }

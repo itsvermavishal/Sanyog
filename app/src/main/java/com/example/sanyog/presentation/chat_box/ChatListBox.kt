@@ -20,18 +20,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.sanyog.R
 
 @Composable
-@Preview(showSystemUi = true)
-fun ChatListBox(){
+fun ChatListBox(
+    chatListModel: ChatListModel
+){
 
     Row (modifier = Modifier.padding(8.dp), verticalAlignment = Alignment.CenterVertically){
 
-        Image(painter = painterResource(id = R.drawable.salman_khan),
+        Image(painter = painterResource(id = chatListModel.image),
             contentDescription = null,
             modifier = Modifier.size(60.dp)
                 .clip(shape = CircleShape),
@@ -46,12 +45,12 @@ fun ChatListBox(){
                 horizontalArrangement = Arrangement.SpaceBetween,
                 modifier = Modifier.fillMaxWidth()
             ){
-                Text(text = "Salman Khan", fontSize = 18.sp, fontWeight = FontWeight.Bold)
-                Text(text = "10:00 AM", color = Color.Gray)
+                Text(text = chatListModel.name, fontSize = 18.sp, fontWeight = FontWeight.Bold)
+                Text(text = chatListModel.time, color = Color.Gray)
             }
 
             Spacer(modifier = Modifier.height(4.dp))
-            Text(text = "Hello", color = Color.Gray, fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
+            Text(text = chatListModel.message, color = Color.Gray, fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
         }
     }
 }
