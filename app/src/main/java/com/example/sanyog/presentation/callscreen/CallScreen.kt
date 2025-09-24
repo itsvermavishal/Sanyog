@@ -8,10 +8,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -33,10 +35,55 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.sanyog.R
+import com.example.sanyog.presentation.bottomnavigation.BottomNavigation
 
 @Composable
 @Preview(showSystemUi = true)
 fun CallScreen() {
+
+    val sampleCalls = listOf(
+        Call(
+            image = R.drawable.tripti_dimri,
+            name = "Tripti",
+            time = "12:00 AM",
+            isMissed = false
+        ),
+
+        Call(
+            image = R.drawable.ajay_devgn,
+            name = "Ajay",
+            time = "10:00 AM",
+            isMissed = false
+        ),
+
+        Call(
+            image = R.drawable.rajkummar_rao,
+            name = "Rajkumar",
+            time = "7:45 PM",
+            isMissed = true
+        ),
+
+        Call(
+            image = R.drawable.boy,
+            name = "Sallu",
+            time = "1:00 AM",
+            isMissed = false
+        ),
+
+        Call(
+            image = R.drawable.boy1,
+            name = "Sharukh",
+            time = "9:30 PM",
+            isMissed = true
+        ),
+
+        Call(
+            image = R.drawable.boy3,
+            name = "Amitabh",
+            time = "4:00 AM",
+            isMissed = false
+        )
+    )
 
     var isSearching by remember { mutableStateOf(false) }
 
@@ -125,7 +172,28 @@ fun CallScreen() {
                     HorizontalDivider()
                 }
             }
+        },
+
+        bottomBar ={
+            BottomNavigation()
+        },
+
+        floatingActionButton = {
+
+            FloatingActionButton(
+                onClick = { /*TODO*/ },
+                containerColor = colorResource(id = R.color.light_green),
+                modifier = Modifier.size(60.dp),
+                contentColor = Color.White
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.add_call),
+                    contentDescription = null,
+                    modifier = Modifier.size(28.dp),
+                )
+            }
         }
+
     ) {
         Column(modifier = Modifier.padding(it)) {
 
@@ -156,6 +224,12 @@ fun CallScreen() {
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
             )
+
+            LazyColumn {
+                items(sampleCalls.size) {
+                    CallItemDesign(call = sampleCalls[it])
+                }
+            }
         }
     }
 }
