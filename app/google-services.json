@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "966336332773",
+    "project_id": "sanyogvishal",
+    "storage_bucket": "sanyogvishal.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:966336332773:android:1fec46d74c05c94dd6e50c",
+        "android_client_info": {
+          "package_name": "com.social.sanyog"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARmSZkleJdgIWz9MPCpPqTWQ1je6NWnhQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
