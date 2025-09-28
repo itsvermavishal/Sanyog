@@ -28,7 +28,7 @@ fun SanyogNavigationSystem(){
         }
 
         composable<Routes.UserRegistrationScreen>{
-            UserRegistrationScreen()
+            UserRegistrationScreen(navController)
         }
 
         composable<Routes.HomeScreen>{
