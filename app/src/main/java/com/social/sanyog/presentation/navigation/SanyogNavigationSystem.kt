@@ -1,6 +1,7 @@
 package com.social.sanyog.presentation.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -11,6 +12,7 @@ import com.social.sanyog.presentation.profile.UserProfileScreen
 import com.social.sanyog.presentation.splashscreen.SplashScreen
 import com.social.sanyog.presentation.statusscreen.StatusScreen
 import com.social.sanyog.presentation.userregistrationscreen.UserRegistrationScreen
+import com.social.sanyog.presentation.viewmodel.BaseViewModel
 import com.social.sanyog.presentation.welcomescreen.WelcomeScreen
 
 @Composable
@@ -33,19 +35,20 @@ fun SanyogNavigationSystem(){
         }
 
         composable<Routes.HomeScreen>{
-            HomeScreen()
+            val baseViewModel:BaseViewModel = hiltViewModel()
+            HomeScreen(navController, baseViewModel)
         }
 
         composable<Routes.StatusScreen>{
-            StatusScreen()
+            StatusScreen(navController)
         }
 
         composable<Routes.GroupsScreen>{
-            GroupsScreen()
+            GroupsScreen(navController)
         }
 
         composable<Routes.CallScreen>{
-            CallScreen()
+            CallScreen(navController)
         }
 
         composable<Routes.UserProfileScreen>{

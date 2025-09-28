@@ -33,12 +33,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.social.sanyog.R
 import com.social.sanyog.presentation.bottomnavigation.BottomNavigation
+import com.social.sanyog.presentation.navigation.Routes
 
 @Composable
-@Preview(showSystemUi = true)
-fun GroupsScreen(){
+fun GroupsScreen(navHostController: NavHostController){
 
     var isSearching by remember { mutableStateOf(false) }
 
@@ -141,7 +142,15 @@ fun GroupsScreen(){
         }
     },
         bottomBar = {
-            BottomNavigation()
+            BottomNavigation(navHostController, selectedItem = 0, onClick = {item ->
+
+                when(item){
+                    0 -> navHostController.navigate(Routes.HomeScreen)
+                    1 -> navHostController.navigate(Routes.StatusScreen)
+                    2 -> navHostController.navigate(Routes.GroupsScreen)
+                    3 -> navHostController.navigate(Routes.CallScreen)
+                }
+            })
         }){
         Column(modifier = Modifier.padding(it)){
 

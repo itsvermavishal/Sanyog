@@ -281,7 +281,7 @@ class BaseViewModel : ViewModel() {
     }
 
     @OptIn(ExperimentalStdlibApi::class)
-    private fun base64ToBitmap(base64String: String): Bitmap? {
+    internal fun base64ToBitmap(base64String: String): Bitmap? {
 
         return try {
             val decodeByte = Base64.decode(base64String, android.util.Base64.DEFAULT)

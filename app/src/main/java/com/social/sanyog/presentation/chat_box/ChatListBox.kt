@@ -1,6 +1,7 @@
 package com.social.sanyog.presentation.chat_box
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -13,6 +14,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -22,17 +24,33 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.rememberImagePainter
+import com.social.sanyog.R
+import com.social.sanyog.presentation.viewmodel.BaseViewModel
 
 @Composable
 fun ChatListBox(
-    chatListModel: ChatListModel
+    chatListModel: ChatListModel,
+    onClick: () -> Unit,
+    baseViewModel: BaseViewModel
 ){
 
     Row (modifier = Modifier.padding(8.dp), verticalAlignment = Alignment.CenterVertically){
 
-        Image(painter = painterResource(id = chatListModel.image),
+        val profileImage = chatListModel?.profileImage
+
+        val bitmap = remember {
+            profileImage?.let { baseViewModel.base64ToBitmap(it) }
+        }
+        Image(
+            painter = if (bitmap != null){
+                rememberImagePainter(bitmap)
+            }else{
+                painterResource(R.drawable.user_placeholder)
+            },
             contentDescription = null,
             modifier = Modifier.size(60.dp)
+                .background(color = Color.LightGray)
                 .clip(shape = CircleShape),
             contentScale = ContentScale.Crop
         )
@@ -45,12 +63,12 @@ fun ChatListBox(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 modifier = Modifier.fillMaxWidth()
             ){
-                Text(text = chatListModel.name, fontSize = 18.sp, fontWeight = FontWeight.Bold)
-                Text(text = chatListModel.time, color = Color.Gray)
+                Text(text = chatListModel.name?: "Unknown", fontSize = 18.sp, fontWeight = FontWeight.Bold)
+                Text(text = chatListModel.time?: "--:--", color = Color.Gray)
             }
 
             Spacer(modifier = Modifier.height(4.dp))
-            Text(text = chatListModel.message, color = Color.Gray, fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
+            Text(text = chatListModel.message?: "No Message", color = Color.Gray, fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
         }
     }
 }
