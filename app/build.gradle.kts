@@ -77,4 +77,6 @@ dependencies {
     //firebase
     implementation ("com.google.firebase:firebase-database:22.0.1")
     implementation("com.google.firebase:firebase-auth:23.0.0")
+
+    implementation("io.coil-kt:coil-compose:2.7.0")
 }

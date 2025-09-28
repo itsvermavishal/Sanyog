@@ -7,6 +7,7 @@ import androidx.navigation.compose.rememberNavController
 import com.social.sanyog.presentation.callscreen.CallScreen
 import com.social.sanyog.presentation.groupsscreen.GroupsScreen
 import com.social.sanyog.presentation.homescreen.HomeScreen
+import com.social.sanyog.presentation.profile.UserProfileScreen
 import com.social.sanyog.presentation.splashscreen.SplashScreen
 import com.social.sanyog.presentation.statusscreen.StatusScreen
 import com.social.sanyog.presentation.userregistrationscreen.UserRegistrationScreen
@@ -45,6 +46,10 @@ fun SanyogNavigationSystem(){
 
         composable<Routes.CallScreen>{
             CallScreen()
+        }
+
+        composable<Routes.UserProfileScreen>{
+            UserProfileScreen(navHostController = navController)
         }
 
     }
